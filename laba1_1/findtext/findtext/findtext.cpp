@@ -8,64 +8,70 @@ using namespace std;
 
 bool ValidateInput(int argc)
 {
-	if (argc != 3)
+    if (argc != 3)
     {
-        cout << "Invalid arguments count.\n"<< 
-			"Usage: findtext.exe <file name> <text to search>\n";
-        return 0;
+        cout << "Invalid arguments count." << endl << 
+            "Usage: findtext.exe <file name> <text to search>" << endl;
+        return false;
     }
-	return 1;
+    return true;
 }
 
-bool ValidateTheVariables(ifstream &input, const string stringToFind)
+bool CheckingOfArguments(ifstream & input, const string & searchLine)
 {
-	if (!input.is_open()) 
+    if (!input.is_open()) 
     {
-        cout << "Failed to open file for reading\n";
-        return 0;
+        cout << "Failed to open file for reading" << endl;
+        return false;
     }
 
-	if (stringToFind == "") 
+    if (searchLine.empty()) 
     {
-        cout << "It turned out that it is an empty string\n";
-        return 0;
+        cout << "It turned out that it is an empty string" << endl;
+        return false;
     }
-	
-	return 1;
+    
+    return true;
 }
 
-void SubstringSearch(ifstream &input, const string stringToFind)
+void SubstringSearch(ifstream & input, const string & searchLine)
 {
-	int lineNumber = 1;
-    bool stringIsFound = false;
-    string readsAString;
+    int lineNumber = 1;
+    bool isStringFound = false;
+    string readsLine;
 
-	while (getline(input, readsAString))
+    while (getline(input, readsLine))
     {
-        size_t position = readsAString.find(stringToFind);
+        size_t position = readsLine.find(searchLine);
         if (position != -1)
         {
-            printf ("%d\n",lineNumber);
-            stringIsFound = true;
+            cout << lineNumber << endl;
+            isStringFound = true;
         }
         lineNumber++;
     }
 
-	if (!stringIsFound)
-        cout << "Not found";
+    if (!isStringFound)
+    {
+        cout << "Not found" << endl;
+    }
 }
 
 int main(int argc, char * argv[])
 {
-    setlocale (LC_ALL, "Rus");
+    setlocale(LC_ALL, "Rus");
 
     if(!ValidateInput(argc))
-		return 1;
+    {
+        return 1;
+    }
 
     ifstream input(argv[1]);
-    string stringToFind = argv[2];
-	if (ValidateTheVariables(input, stringToFind))	   
-        SubstringSearch(input, stringToFind);
+    string searchLine = argv[2];
+    if (CheckingOfArguments(input, searchLine))
+    {
+        SubstringSearch(input, searchLine);
+    }
 
     return 0;
 }
