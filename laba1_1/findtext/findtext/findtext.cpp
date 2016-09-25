@@ -31,7 +31,7 @@ bool CheckingOfArguments(ifstream & input, const string & searchLine)
     return ((input.is_open()) && (!searchLine.empty()));
 }
 
-void SubstringSearch(ifstream & input, const string & searchLine)
+void SearchSubstring(ifstream & input, const string & searchLine)
 {
     int lineNumber = 1;
     bool isStringFound = false;
@@ -67,7 +67,7 @@ int main(int argc, char * argv[])
     string searchLine = argv[2];
     if (CheckingOfArguments(input, searchLine))
     {
-        SubstringSearch(input, searchLine);
+        SearchSubstring(input, searchLine);
     }
 
     return 0;
