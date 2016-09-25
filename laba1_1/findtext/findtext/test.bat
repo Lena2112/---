@@ -1,21 +1,21 @@
 set PROGRAM="%~1" 
 
-%PROGRAM% empty.txt "в вашей воле" 
+%PROGRAM% empty.txt "see you" 
 if ERRORLEVEL 1 goto err 
 
-%PROGRAM% input.txt "вы" 
+%PROGRAM% input.txt "me" 
 if ERRORLEVEL 1 goto err 
 
 %PROGRAM% input.txt ""
 if ERRORLEVEL 1 goto err 
 
-%PROGRAM% input.txt "привет" 
+%PROGRAM% input.txt "hello" 
 if ERRORLEVEL 1 goto err 
 
-%PROGRAM% input.txt "в вашей воле"
+%PROGRAM% input.txt "see you"
 if ERRORLEVEL 1 goto err
 
-%PROGRAM% non-existing.txt "найди строку" 
+%PROGRAM% non-existing.txt "find the line" 
 IF ERRORLEVEL 1 goto err
 
 echo Program testing succeeded 
