@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iomanip>
 
-#define MATRIX_SIZE 3
+const int MATRIX_SIZE = 3;
 
 typedef double Matrix[MATRIX_SIZE][MATRIX_SIZE];
 
@@ -15,21 +15,23 @@ bool ValidateInput(int argc)
     {
         cout << "Invalid arguments count." << endl << 
             "Usage: invert.exe <matrix file1>" << endl;
+		return false;
     }
-    return (argc == 2);
+    return true;
 }
 
-bool CheckingOfArguments(ifstream & input)
+bool CheckingArguments(const ifstream & input)
 {
     if (!input.is_open()) 
     {
         cout << "Failed to open file for reading" << endl;
+		return false;
     }
     
-    return (input.is_open());
+    return true;
 }
 
-void FillInMatrix(Matrix & matrix, ifstream & input)
+void FillMatrix(Matrix & matrix, ifstream & input)
 {
     for(int i = 0; i < MATRIX_SIZE; i++)
     {
@@ -50,7 +52,7 @@ double GetDeterminant(Matrix const & matrix)
            - matrix[0][1] * matrix[1][0] * matrix[2][2];
 }
 
-double Minor(Matrix const & matrix, int const & i, int const & j)
+double Minor(Matrix const & matrix, int i, int j)
 {
     double value[4];
     int index = 0;
@@ -71,18 +73,18 @@ double Minor(Matrix const & matrix, int const & i, int const & j)
     return value[0] * value[3] - value[1] * value[2];
 }
 
-double GetElementNewMatrix(Matrix const & matrix, int const & i, int const & j, double const & determinant)
+double GetInvertedMatrixElement(Matrix const & matrix, int i, int j, double determinant)
 {
     return pow((double)-1, (i + j)) * Minor(matrix, j, i) / determinant;
 }
 
-void PrintNewMatrix(Matrix const & matrix, double const & determinant)
+void PrintNewMatrix(Matrix const & matrix, double determinant)
 {
     for (int i = 0; i < MATRIX_SIZE; i++)
     {
         for (int j = 0; j < MATRIX_SIZE; j++)
         {
-            cout << setprecision(3) << GetElementNewMatrix(matrix, i, j, determinant) << ' ';
+            cout << setprecision(3) << GetInvertedMatrixElement(matrix, i, j, determinant) << ' ';
         }
         cout << endl;
     }
@@ -99,10 +101,10 @@ int main(int argc, char * argv[])
 
     ifstream input(argv[1]);
 
-    if (CheckingOfArguments(input))
+    if (CheckingArguments(input))
     {
         Matrix matrixInput;
-        FillInMatrix(matrixInput, input);
+        FillMatrix(matrixInput, input);
         double determinant = GetDeterminant(matrixInput);
         if (determinant == 0)
         {

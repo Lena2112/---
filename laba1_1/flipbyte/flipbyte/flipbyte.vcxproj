@@ -58,7 +58,7 @@
       </AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>TEST.bat $(TargetPath)</Command>
+      <Command>TEST.bat "$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

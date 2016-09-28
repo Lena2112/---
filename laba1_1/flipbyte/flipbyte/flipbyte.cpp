@@ -9,18 +9,20 @@ bool ValidateInput(int argc)
     {
         cout << "Invalid arguments count." << endl <<
             "Usage: flipbyte.exe <входной байт>" << endl;
+		return false;
     }
-    return (argc == 2);
+    return true;
 }
 
-bool CheckingOfArguments(int inputByte)
+bool CheckingArguments(int inputByte)
 {
     if (inputByte < 0 || inputByte > 255) 
     {
         cout << "Number entered should be from 0 to 255" << endl;
+		return false;
     }
     
-    return (inputByte >= 0 && inputByte <= 255) ;
+    return true;
 }
 
 void NumberReverseOrderBits(int inputByte)
@@ -52,7 +54,7 @@ int main(int argc, char * argv[])
 
     int inputByte = atoi(argv[1]);
 
-    if (CheckingOfArguments(inputByte))       
+    if (CheckingArguments(inputByte))       
     {
         NumberReverseOrderBits(inputByte);
     }
