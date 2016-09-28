@@ -12,23 +12,26 @@ bool ValidateInput(int argc)
     {
         cout << "Invalid arguments count." << endl << 
             "Usage: findtext.exe <file name> <text to search>" << endl;
+		return false;
     }
-    return (argc == 3);
+    return true;
 }
 
-bool CheckingOfArguments(ifstream & input, const string & searchLine)
+bool CheckingArguments(const ifstream & input, const string & searchLine)
 {
     if (!input.is_open()) 
     {
         cout << "Failed to open file for reading" << endl;
+		return false;
     }
 
     if (searchLine.empty()) 
     {
         cout << "It turned out that it is an empty string" << endl;
+		return false;
     }
     
-    return ((input.is_open()) && (!searchLine.empty()));
+    return true;
 }
 
 void SearchSubstring(ifstream & input, const string & searchLine)
@@ -65,7 +68,7 @@ int main(int argc, char * argv[])
 
     ifstream input(argv[1]);
     string searchLine = argv[2];
-    if (CheckingOfArguments(input, searchLine))
+    if (CheckingArguments(input, searchLine))
     {
         SearchSubstring(input, searchLine);
     }

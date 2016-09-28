@@ -16,7 +16,10 @@ if ERRORLEVEL 1 goto err
 if ERRORLEVEL 1 goto err
 
 %PROGRAM% non-existing.txt "find the line" 
-IF ERRORLEVEL 1 goto err
+if ERRORLEVEL 1 goto err
+
+%PROGRAM% non-existing.txt 
+if NOT ERRORLEVEL 1 goto err
 
 echo Program testing succeeded 
 exit 0 
