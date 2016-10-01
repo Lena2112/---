@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <vector>
 
 const int MATRIX_SIZE = 3;
 
@@ -20,7 +21,7 @@ bool ValidateInput(int argc)
     return true;
 }
 
-bool CheckingArguments(const ifstream & input)
+bool CheckArguments(const ifstream & input)
 {
     if (!input.is_open()) 
     {
@@ -33,10 +34,15 @@ bool CheckingArguments(const ifstream & input)
 
 void FillMatrix(Matrix & matrix, ifstream & input)
 {
-    for(int i = 0; i < MATRIX_SIZE; i++)
+    for(int i = 0; i < MATRIX_SIZE; ++i)
     {
-        for(int j = 0; j < MATRIX_SIZE; j++)
+        for(int j = 0; j < MATRIX_SIZE; ++j)
         {
+			if(!input)
+			{
+				cout << "Few data" << endl;
+				exit(0);
+			}
             input >> matrix[i][j];
         }
     }
@@ -80,11 +86,11 @@ double GetInvertedMatrixElement(Matrix const & matrix, int i, int j, double dete
 
 void PrintNewMatrix(Matrix const & matrix, double determinant)
 {
-    for (int i = 0; i < MATRIX_SIZE; i++)
+    for (int i = 0; i < MATRIX_SIZE; ++i)
     {
-        for (int j = 0; j < MATRIX_SIZE; j++)
+        for (int j = 0; j < MATRIX_SIZE; ++j)
         {
-            cout << setprecision(3) << GetInvertedMatrixElement(matrix, i, j, determinant) << ' ';
+            cout << fixed << setprecision(3) << GetInvertedMatrixElement(matrix, i, j, determinant) << ' ';
         }
         cout << endl;
     }
@@ -101,7 +107,7 @@ int main(int argc, char * argv[])
 
     ifstream input(argv[1]);
 
-    if (CheckingArguments(input))
+    if (CheckArguments(input))
     {
         Matrix matrixInput;
         FillMatrix(matrixInput, input);
