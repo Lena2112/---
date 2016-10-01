@@ -17,7 +17,7 @@ bool ValidateInput(int argc)
     return true;
 }
 
-bool CheckingArguments(const ifstream & input, const string & searchLine)
+bool CheckArguments(const ifstream & input, const string & searchLine)
 {
     if (!input.is_open()) 
     {
@@ -48,7 +48,7 @@ void SearchSubstring(ifstream & input, const string & searchLine)
             cout << lineNumber << endl;
             isStringFound = true;
         }
-        lineNumber++;
+        ++lineNumber;
     }
 
     if (!isStringFound)
@@ -68,7 +68,7 @@ int main(int argc, char * argv[])
 
     ifstream input(argv[1]);
     string searchLine = argv[2];
-    if (CheckingArguments(input, searchLine))
+    if (CheckArguments(input, searchLine))
     {
         SearchSubstring(input, searchLine);
     }

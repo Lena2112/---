@@ -8,13 +8,13 @@ bool ValidateInput(int argc)
     if (argc != 2)
     {
         cout << "Invalid arguments count." << endl <<
-            "Usage: flipbyte.exe <входной байт>" << endl;
+            "Usage: flipbyte.exe <input byte>" << endl;
 		return false;
     }
     return true;
 }
 
-bool CheckingArguments(int inputByte)
+bool CheckArguments(int inputByte)
 {
     if (inputByte < 0 || inputByte > 255) 
     {
@@ -45,8 +45,6 @@ void NumberReverseOrderBits(int inputByte)
 
 int main(int argc, char * argv[])
 {
-    setlocale(LC_ALL, "Rus");
-
     if(!ValidateInput(argc))
     {
         return 1;
@@ -54,7 +52,7 @@ int main(int argc, char * argv[])
 
     int inputByte = atoi(argv[1]);
 
-    if (CheckingArguments(inputByte))       
+    if (CheckArguments(inputByte))       
     {
         NumberReverseOrderBits(inputByte);
     }
