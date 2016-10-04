@@ -58,7 +58,7 @@ double GetDeterminant(Matrix const & matrix)
            - matrix[0][1] * matrix[1][0] * matrix[2][2];
 }
 
-double Minor(Matrix const & matrix, int i, int j)
+double GetMinorMiniMatrix(Matrix const & matrix, int i, int j)
 {
     double value[4];
     int index = 0;
@@ -81,7 +81,7 @@ double Minor(Matrix const & matrix, int i, int j)
 
 double GetInvertedMatrixElement(Matrix const & matrix, int i, int j, double determinant)
 {
-    return pow((double)-1, (i + j)) * Minor(matrix, j, i) / determinant;
+    return pow((double)-1, (i + j)) * GetMinorMiniMatrix(matrix, j, i) / determinant;
 }
 
 void PrintNewMatrix(Matrix const & matrix, double determinant)
