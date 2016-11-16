@@ -1,0 +1,12 @@
+car:машина
+кот:cat
+кошка:cat
+облако:cloud
+облачко:cloud
+помидор:tomato
+президент:president
+home:дом
+house:дом
+собака:dog
+сыр:cheese
+яблоко:apple
