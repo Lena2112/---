@@ -122,20 +122,20 @@ CRemoteControl::CRemoteControl(CCar & car, std::istream & input, std::ostream & 
 		{
 			int speed;
 
-			args >> speed;
-
-			if (m_car.GetGear() < 0)
+			if (args >> speed)
 			{
-				speed *= (-1);
-			}
-
-			if (m_car.SetSpeed(speed))
-			{
-				cout << "Select speed " << abs(speed) << "\n";
+				if (m_car.SetSpeed(speed))
+				{
+					cout << "Select speed " << abs(speed) << "\n";
+				}
+				else
+				{
+					cout << "Can't select speed\n";
+				}
 			}
 			else
 			{
-				cout << "Can't select speed\n";
+				cout << "Unknown command!\n";
 			}
 
 			return true;

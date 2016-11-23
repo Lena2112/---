@@ -37,7 +37,7 @@ bool CheckArguments(const ifstream & input, const ofstream & output)
 void WriteVector(ifstream & input, vector<string> & lines)
 {
 	string s;
-	while (getline(input, s))
+	while (getline(input, s) && lines.size() < 10)
 	{
 		lines.push_back(s);
 	}
@@ -45,7 +45,7 @@ void WriteVector(ifstream & input, vector<string> & lines)
 
 void IdentifyStartingPoints(vector< pair<int, int> > & startPoints, vector<string> & lines)
 {
-	for (int i = 0; i < lines.size(); ++i) 
+	for (size_t i = 0; i < lines.size(); ++i) 
 	{
         size_t position = lines[i].find(beginChar);
         if (position != lines[i].npos) 
@@ -55,7 +55,7 @@ void IdentifyStartingPoints(vector< pair<int, int> > & startPoints, vector<strin
     }
 }
 
-void Fill(vector<string> & lines, int row, int col) 
+void Fill(vector<string> & lines, size_t row, int col) 
 {
     if (row > 0 && col > 0 &&  row < lines.size()
         &&  lines[row][col] == fillChar) 
@@ -73,7 +73,7 @@ void FindPointFill(vector<string> & lines)
 	vector< pair<int, int> > startPoints;
     IdentifyStartingPoints(startPoints, lines);
 
-    for (int i = 0; i < startPoints.size(); ++i) 
+    for (size_t i = 0; i < startPoints.size(); ++i) 
 	{
         pair<int, int> & point = startPoints[i];
         lines[point.first][point.second] = fillChar;
@@ -86,7 +86,7 @@ void PrintCompletedVector(vector<string> & lines, ofstream & output)
 {
 	FindPointFill(lines);
  
-    for (int i = 0; i < lines.size(); ++i)
+    for (size_t i = 0; i < lines.size(); ++i)
 	{
         output << lines[i] << endl;
 	}
@@ -94,6 +94,7 @@ void PrintCompletedVector(vector<string> & lines, ofstream & output)
  
 int main(int argc, char * argv[]) 
 {
+	setlocale(LC_ALL, "Rus");
 	if(!ValidateInput(argc))
     {
         return 1;

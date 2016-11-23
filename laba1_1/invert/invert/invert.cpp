@@ -2,7 +2,6 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <vector>
 
 const int MATRIX_SIZE = 3;
 
@@ -32,7 +31,9 @@ bool CheckArguments(const ifstream & input)
     return true;
 }
 
-void FillMatrix(Matrix & matrix, ifstream & input)
+
+//refactore me
+bool FillMatrix(Matrix & matrix, ifstream & input)
 {
     for(int i = 0; i < MATRIX_SIZE; ++i)
     {
@@ -40,12 +41,12 @@ void FillMatrix(Matrix & matrix, ifstream & input)
         {
 			if(!input)
 			{
-				cout << "Few data" << endl;
-				exit(0);
+				return false;
 			}
             input >> matrix[i][j];
         }
     }
+	return true;
 }
 
 double GetDeterminant(Matrix const & matrix)
@@ -84,7 +85,8 @@ double GetInvertedMatrixElement(Matrix const & matrix, int i, int j, double dete
     return pow((double)-1, (i + j)) * GetMinorMiniMatrix(matrix, j, i) / determinant;
 }
 
-void PrintNewMatrix(Matrix const & matrix, double determinant)
+//rename
+void PrintInvertMatrix(Matrix const & matrix, double determinant)
 {
     for (int i = 0; i < MATRIX_SIZE; ++i)
     {
@@ -110,14 +112,18 @@ int main(int argc, char * argv[])
     if (CheckArguments(input))
     {
         Matrix matrixInput;
-        FillMatrix(matrixInput, input);
+		if (!FillMatrix(matrixInput, input))
+		{
+			cout << "Few data" << endl;
+			return 1;
+		}
         double determinant = GetDeterminant(matrixInput);
         if (determinant == 0)
         {
             cout << "The determinant of the matrix is zero -> The inverse matrix is not" << endl;
             return 1;
         }
-        PrintNewMatrix(matrixInput, determinant);
+        PrintInvertMatrix(matrixInput, determinant);
     }
 
     return 0;

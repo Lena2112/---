@@ -35,10 +35,10 @@
     <ClCompile Include="vectorTest.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\vector\VectorProcessor.cpp">
+    <ClCompile Include="VectorProcessorTests.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="VectorProcessorTests.cpp">
+    <ClCompile Include="..\vector\VectorProcessor.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

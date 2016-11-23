@@ -42,7 +42,6 @@ bool CCar::TurnOnEngine()
 	{
 		return false;
 	}
-
 	m_engineIsTurnedOn = true;
 
 	return true;

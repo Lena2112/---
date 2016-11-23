@@ -33,4 +33,12 @@ BOOST_AUTO_TEST_CASE(string_empty)
 	str = HtmlDecode(str);
 	BOOST_CHECK(StringsAreEqual(str, ""));
 }
+
+BOOST_AUTO_TEST_CASE(rename_me)
+{
+	string str = "aaa &amp;amp; aaa";
+	str = HtmlDecode(str);
+	BOOST_CHECK(StringsAreEqual(str, "aaa &amp; aaa"));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

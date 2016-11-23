@@ -60,6 +60,9 @@
     <PostBuildEvent>
       <Command>"$(TargetPath)" —log_level=test_suite</Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command />
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

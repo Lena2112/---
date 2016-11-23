@@ -6,12 +6,14 @@ fc output example1
 if ERRORLEVEL 1 goto err 
 
 rem проверка выхода за пределы
-%PROGRAM% -1 
+%PROGRAM% -1 > output
+fc output example2
 if ERRORLEVEL 1 goto err 
 
 rem проверка колличества аргументов
-%PROGRAM%
-if NOT ERRORLEVEL 1 goto err 
+%PROGRAM% > output
+fc output example3
+if ERRORLEVEL 1 goto err 
 
 rem проверка оптимального варианта, должно вернуть 96
 %PROGRAM% 6 > output
