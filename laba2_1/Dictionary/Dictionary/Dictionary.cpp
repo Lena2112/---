@@ -60,7 +60,7 @@ bool FindTranslation(string inputWord, Dictionary &dictionary)
 	if (iterator != dictionary.end())
     {
 		findWord = iterator->second;
-		cout << iterator->second << endl;
+		//cout << iterator->second << endl;
 		find = true;
 	}
 	if (!findWord)
@@ -71,7 +71,7 @@ bool FindTranslation(string inputWord, Dictionary &dictionary)
 			if (it->second == inputWord)
 			{
 				findWord = it->first;
-				cout << it->first << endl;
+				//cout << it->first << endl;
 				find = true;
 			}
 		}
@@ -79,7 +79,7 @@ bool FindTranslation(string inputWord, Dictionary &dictionary)
 	return find;
 }
 
-std::string GetString(pair<std::string, std::string> translation)
+string GetString(pair<string, string> translation)
 {
 	return  translation.first + ":" + translation.second;
 }
