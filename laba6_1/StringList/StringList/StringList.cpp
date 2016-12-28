@@ -136,22 +136,22 @@ string const& CStringList::GetFrontElement()const
 
 CStringList::CIterator CStringList::begin()
 {
-	return CIterator(m_firstNode.get());
+	return CIterator(m_firstNode.get(), false);
 }
 
 CStringList::CIterator CStringList::end()
 {
-	return CIterator(m_lastNode->next.get());
+	return CIterator(m_lastNode->next.get(), false);
 }
 
 CStringList::CIterator const CStringList::cbegin() const
 {
-	return CIterator(m_firstNode.get());
+	return CIterator(m_firstNode.get(), false);
 }
 
 CStringList::CIterator const CStringList::cend() const
 {
-	return CIterator(m_lastNode->next.get());
+	return CIterator(m_lastNode->next.get(), false);
 }
 
 bool CStringList::CIterator::operator==(const CIterator & other)const
@@ -164,8 +164,9 @@ bool CStringList::CIterator::operator!=(const CIterator & other)const
 	return m_node != other.m_node;
 }
 
-CStringList::CIterator::CIterator(Node * node)
+CStringList::CIterator::CIterator(Node * node, bool isReverse)
 	:m_node(node)
+	, m_isReverse(isReverse)
 {
 }
 
@@ -176,7 +177,14 @@ string & CStringList::CIterator::operator*() const
 
 CStringList::CIterator & CStringList::CIterator::operator++()
 {
-	m_node = m_node->next.get();
+	if (m_isReverse)
+	{
+		m_node = m_node->prev;
+	}
+	else
+	{
+		m_node = m_node->next.get();
+	}
 	return *this;
 }
 
@@ -187,20 +195,20 @@ CStringList::Node * CStringList::CIterator::operator->() const
 
 CStringList::CIterator CStringList::rbegin()
 {
-	return CIterator(m_lastNode);
+	return CIterator(m_lastNode, true);
 }
 
 CStringList::CIterator CStringList::rend()
 {
-	return CIterator(m_firstNode->prev);
+	return CIterator(m_firstNode->prev, true);
 }
 
 CStringList::CIterator const CStringList::crbegin() const
 {
-	return CIterator(m_lastNode);
+	return CIterator(m_lastNode, true);
 }
 
 CStringList::CIterator const CStringList::crend() const
 {
-	return CIterator(m_firstNode->prev);
+	return CIterator(m_firstNode->prev, true);
 }

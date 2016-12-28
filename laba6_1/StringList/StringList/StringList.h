@@ -32,7 +32,7 @@ public:
 	class CIterator
 	{
 		friend CStringList;
-		CIterator(Node *node);
+		CIterator(Node *node, bool isReverse);
 		public:
 			CIterator() = default;
 			string & operator*()const;
@@ -41,6 +41,7 @@ public:
 
 			bool operator==(CIterator const & other) const;
 			bool operator!=(CIterator const & other) const;
+			bool m_isReverse = false;
 		private:
 			Node *m_node = nullptr;
 	};
