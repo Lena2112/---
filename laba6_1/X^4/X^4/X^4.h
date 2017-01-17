@@ -14,4 +14,4 @@ struct EquationRoots4
 
 // ¬ычисл€ем корни кубического уравнени€ ax^4 + bx^3 + cx^2 + dx + e = 0
 EquationRoots4 Solve4(double a, double b, double c, double d, double e);
-void OutRoots(const EquationRoots4 &roots);
+void WriteRoots(const EquationRoots4 &roots);

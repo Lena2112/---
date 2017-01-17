@@ -34,7 +34,7 @@ int main()
 		return 1;
 	}
 
-	OutRoots(equationRoots);
+	WriteRoots(equationRoots);
 
 	return 0;
 }

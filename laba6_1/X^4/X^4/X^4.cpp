@@ -35,11 +35,7 @@ unsigned Solve2(const unsigned &number, double* roots, double a, double b, doubl
 {
 	double const d = pow(b, 2) - 4 * a * c;
 
-	if (d < 0)
-	{
-		return 0;
-	}
-	else if (d == 0)
+	if (d == 0)
 	{
 		roots[number] = -b / (2 * a);
 
@@ -57,7 +53,7 @@ unsigned Solve2(const unsigned &number, double* roots, double a, double b, doubl
 
 unsigned GetRootsNum3(double* s, double r, double q3, double b, double q)
 {
-	double t = acos(r / sqrt(q3));
+	double const t = acos(r / sqrt(q3));
 	b /= 3.;
 	q = -2. * sqrt(q);
 	s[0] = q * cos(t / 3.) - 1;
@@ -177,7 +173,7 @@ EquationRoots4 Solve4(double a, double b, double c, double d, double e)
 	return equationRoots;
 }
 
-void OutRoots(const EquationRoots4 &roots)
+void WriteRoots(const EquationRoots4 &roots)
 {
 	cout << "Roots: ";
 
